@@ -15,4 +15,6 @@ object Functions extends {
   def fun2(a: Entry): Int = Fun2.exec(a)
 
   def fun3(a: Entry, b: Entry): String = Fun3.exec(a, b)
+
+  def fun4(a: BigDecimal): BigDecimal = Fun4.exec(a)
 }
