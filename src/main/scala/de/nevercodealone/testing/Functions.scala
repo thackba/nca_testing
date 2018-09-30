@@ -4,7 +4,7 @@ import de.nevercodealone.testing.impl._
 
 case class Entry(a: Int, b: String)
 
-object Functions extends {
+object Functions {
 
   def add(a: Int, b: Int): Int = Add.exec(a, b)
 

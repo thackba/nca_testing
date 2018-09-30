@@ -12,13 +12,13 @@ class FunctionsPropertySpec extends WordSpec
 
     "add two integers" in {
       forAll { (a: Int, b: Int) =>
-        Functions.add(a, b) shouldBe a + b
+        Functions.add(a, b) shouldBe (b/2) + b
       }
     }
 
-    "be commutative" in {
+    "be not commutative" in {
       forAll(intGenerator, intGenerator) { (a: Int, b: Int) =>
-        Functions.add(a, b) shouldBe Functions.add(b, a)
+        Functions.add(a, b) should not be Functions.add(b, a)
       }
     }
   }

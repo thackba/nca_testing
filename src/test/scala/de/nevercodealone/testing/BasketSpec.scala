@@ -14,14 +14,30 @@ class BasketSpec extends WordSpec with GeneratorDrivenPropertyChecks with Matche
   "Basket" should {
     "have a size of one if an article was add" taggedAs BasketTests in new Fixture {
       forAll((a: Article) => {
+        val basket = new SimpleBasket
         basket.add(a)
         basket should have size 1
       })
     }
+
+    "no items results in size 0" in new Fixture {
+      val basket = new SimpleBasket
+      basket should have size 0
+    }
+
+    "one item results in 1" in new Fixture {
+      val basket = new SimpleBasket
+      private val article = Article("v9jdtisnndkzldmlhievzl3mqHh0e", 5)
+      basket.add(article)
+
+      basket should have size 1
+      basket.get.head.price shouldBe article.price % 5
+    }
+
+
   }
 
   class Fixture {
-    val basket = new SimpleBasket
 
     implicit def arbitrary[T](implicit generator: Gen[T]): Arbitrary[T] = Arbitrary(generator)
 
